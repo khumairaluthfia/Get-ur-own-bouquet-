@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Telaga Teratai – Florist Kebun Teratai</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#f2a4bf; --rose:#c94b78; --blue:#8cc9e0; --deep:#1d5873; --sun:#f6c744;
+  --bg:#fffdf8; --surface:#ffffff; --mist:#e8f4f8; --text:#1f3340; --muted:#5b7380; --line:#d7e8ee;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e2230; --surface:#16313f; --mist:#12303f; --text:#eaf4f7; --muted:#9db8c4; --line:#27495a; --deep:#8cc9e0; --rose:#f2a4bf;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e2230; --surface:#16313f; --mist:#12303f; --text:#eaf4f7; --muted:#9db8c4; --line:#27495a; --deep:#8cc9e0; --rose:#f2a4bf;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.05rem/1.65 Nunito,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,92%);margin:0 auto}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font:700 1.35rem Fraunces,serif;text-decoration:none;color:var(--deep);display:flex;align-items:center;gap:.5rem}
+.logo svg{width:32px;height:30px}
+nav{display:flex;gap:1.6rem;align-items:center}
+nav a{text-decoration:none;font-weight:600;color:var(--muted)}
+nav a:hover{color:var(--rose)}
+.cartbtn{border:0;background:var(--rose);color:#fff;font:700 .95rem Nunito,sans-serif;padding:.55rem 1.1rem;border-radius:99px;cursor:pointer;display:flex;gap:.5rem;align-items:center}
+.cartbtn b{background:var(--sun);color:#3b2d00;border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.8rem}
+@media(max-width:640px){nav a{display:none}}
+
+/* hero */
+.hero{position:relative;background:linear-gradient(180deg,var(--mist) 0%,var(--bg) 100%);overflow:hidden;cursor:crosshair;padding:3.5rem 0 7rem}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(2.6rem,6.2vw,4.8rem);font-weight:700;color:var(--deep);letter-spacing:-.02em}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--rose)}
+.hero p{max-width:34ch;color:var(--muted);font-size:1.15rem;margin:1.4rem 0 2rem}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;font:700 1rem Nunito,sans-serif;padding:.85rem 1.7rem;border-radius:99px;background:var(--sun);color:#3b2d00;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:2px solid var(--deep);color:var(--deep);margin-left:.6rem}
+.bloom-box{position:relative;aspect-ratio:1/.95;pointer-events:none}
+.bloom-box svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 18px 24px rgba(29,88,115,.18))}
+.bloom path{transform-origin:50px 78px;animation:open 1.6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*.12s)}
+@keyframes open{from{transform:scale(.05);opacity:0}}
+.bloom-box{animation:bob 6s ease-in-out 2s infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.wave{position:absolute;left:0;right:0;bottom:-1px;height:90px;z-index:1}
+.wave path{fill:var(--bg)}
+.wave .w1{fill:var(--blue);opacity:.35;animation:drift 9s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translateX(-60px)}}
+.ripple{position:absolute;border:2px solid var(--blue);border-radius:50%;width:10px;height:10px;transform:translate(-50%,-50%);animation:rip 1.6s ease-out forwards;pointer-events:none;z-index:1}
+@keyframes rip{to{width:340px;height:340px;opacity:0}}
+.hint{position:absolute;right:4%;bottom:100px;z-index:2;font-size:.85rem;color:var(--muted)}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.bloom-box{max-width:340px;margin:0 auto}.hint{display:none}}
+
+/* sections */
+section{padding:5rem 0}
+.head{max-width:52ch;margin-bottom:2.2rem}
+.head h2{font-size:clamp(2rem,4vw,3rem);color:var(--deep)}
+.head p{color:var(--muted);margin:.8rem 0 0}
+.filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.chip{border:2px solid var(--line);background:var(--surface);color:var(--text);font:700 .92rem Nunito,sans-serif;padding:.5rem 1.1rem;border-radius:99px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{color:#0e2230}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.6rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:28px 28px 28px 8px;overflow:hidden;display:flex;flex-direction:column}
+.art{aspect-ratio:1/.85;display:grid;place-items:center;padding:1rem}
+.art svg{width:72%;height:auto}
+.card .body{padding:1.2rem 1.4rem 1.5rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+.card h3{font-size:1.35rem}
+.card p{margin:0;color:var(--muted);font-size:.95rem;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;margin-top:.8rem}
+.price{font:700 1.15rem Fraunces,serif;color:var(--rose)}
+.add{border:0;background:var(--deep);color:#fff;font:700 .9rem Nunito,sans-serif;padding:.5rem 1rem;border-radius:99px;cursor:pointer}
+:root[data-theme="dark"] .add{color:#0e2230}
+.add.done{background:var(--sun);color:#3b2d00}
+
+/* about */
+.about{background:var(--mist)}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.facts{display:grid;gap:1rem}
+.fact{background:var(--surface);border-left:6px solid var(--pink);padding:1rem 1.3rem;border-radius:0 18px 18px 0}
+.fact:nth-child(2){border-color:var(--blue)}.fact:nth-child(3){border-color:var(--sun)}
+.fact h3{font-size:1.15rem;margin-bottom:.2rem}.fact p{margin:0;color:var(--muted);font-size:.97rem}
+@media(max-width:820px){.about .wrap{grid-template-columns:1fr}}
+
+/* kontak */
+form.contact{display:grid;gap:1rem;max-width:560px}
+label{font-weight:700;font-size:.95rem;display:grid;gap:.35rem}
+input,textarea{font:inherit;padding:.8rem 1rem;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--text);width:100%}
+input:focus,textarea:focus{border-color:var(--blue)}
+.err{color:var(--rose);font-size:.88rem;min-height:1.2em;margin:0}
+footer{background:var(--deep);color:#eaf4f7;padding:2.5rem 0;text-align:center;padding-bottom:calc(2.5rem + env(safe-area-inset-bottom,0px))}
+:root[data-theme="dark"] footer,:root:not([data-theme="light"]) footer{background:#0a1822}
+footer p{margin:.3rem 0;color:#b8d4de}
+
+/* cart drawer */
+.scrim{position:fixed;inset:0;background:rgba(15,34,48,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:30}
+.scrim.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:40;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;padding:calc(1.2rem + env(safe-area-inset-top,0px)) 1.4rem calc(1.2rem + env(safe-area-inset-bottom,0px))}
+aside.on{transform:none}
+aside header{position:static;display:flex;justify-content:space-between;align-items:center;background:none;backdrop-filter:none;border:0;padding:0 0 1rem}
+aside h2{font-size:1.6rem;color:var(--deep)}
+.x{border:0;background:var(--mist);color:var(--text);width:38px;height:38px;border-radius:50%;font-size:1.2rem;cursor:pointer}
+.items{flex:1;overflow:auto;display:grid;gap:.8rem;align-content:start}
+.item{display:grid;grid-template-columns:1fr auto;gap:.2rem .8rem;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:.8rem 1rem}
+.item small{color:var(--muted)}
+.qty{display:flex;align-items:center;gap:.5rem;grid-column:1/-1}
+.qty button{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;font-weight:700}
+.empty{color:var(--muted);text-align:center;padding:2rem 1rem}
+.total{display:flex;justify-content:space-between;font:700 1.2rem Fraunces,serif;padding:1rem 0}
+aside .btn{width:100%;text-align:center}
+aside .btn[disabled]{opacity:.5;cursor:not-allowed}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);background:var(--deep);color:#fff;padding:.7rem 1.3rem;border-radius:99px;opacity:0;transition:.3s;z-index:50;font-weight:700}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="#atas" class="logo" aria-label="Telaga Teratai"><span id="logoIcon"></span>Telaga Teratai</a>
+    <nav aria-label="Menu utama">
+      <a href="#koleksi">Koleksi</a>
+      <a href="#cerita">Cerita Kami</a>
+      <a href="#kontak">Kontak</a>
+      <button class="cartbtn" id="openCart" aria-label="Buka keranjang">Keranjang <b id="count">0</b></button>
+    </nav>
+  </div>
+</header>
+
+<main id="atas">
+<section class="hero" id="hero" style="padding-top:3.5rem">
+  <div class="wrap">
+    <div>
+      <h1>Bunga segar dari <em>telaga</em> yang tenang.</h1>
+      <p>Buket dan rangkaian teratai buatan tangan, dirangkai pagi hari dan diantar di hari yang sama.</p>
+      <a class="btn" href="#koleksi">Lihat koleksi</a><a class="btn ghost" href="#kontak">Pesan khusus</a>
+    </div>
+    <div class="bloom-box" id="heroBloom" aria-hidden="true"></div>
+  </div>
+  <span class="hint">Sentuh kolam untuk membuat riak</span>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path class="w1" d="M0 40 Q180 0 360 40 T720 40 T1080 40 T1440 40 V90 H0Z"/>
+    <path d="M0 60 Q240 20 480 60 T960 60 T1440 50 V90 H0Z"/>
+  </svg>
+</section>
+
+<section id="koleksi">
+  <div class="wrap">
+    <div class="head">
+      <h2>Koleksi dari kebun teratai</h2>
+      <p>Setiap rangkaian memakai bunga yang dipetik pada hari pemesanan.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter koleksi" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="about" id="cerita">
+  <div class="wrap">
+    <div class="head" style="margin:0">
+      <h2>Berawal dari satu kolam kecil di belakang rumah</h2>
+      <p>Kami menanam teratai merah muda, putih, dan biru sendiri, lalu merangkainya tanpa busa kimia. Bunga yang masih menguncup kami kirim dalam wadah berair supaya mekar di tangan Anda.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><h3>Dipetik pagi, diantar siang</h3><p>Pesan sebelum pukul 10.00 untuk pengiriman hari ini di area Surakarta.</p></div>
+      <div class="fact"><h3>Tahan 3–5 hari</h3><p>Ganti air setiap hari dan taruh jauh dari sinar matahari langsung.</p></div>
+      <div class="fact"><h3>Kartu ucapan gratis</h3><p>Tulis pesan Anda di keranjang, kami tulis tangan di kartunya.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="wrap">
+    <div class="head">
+      <h2>Ada pesanan khusus?</h2>
+      <p>Untuk pernikahan, duka cita, atau dekorasi acara, ceritakan kebutuhan Anda. Kami balas lewat WhatsApp.</p>
+    </div>
+    <form class="contact" id="contactForm" novalidate>
+      <label>Nama<input id="cName" autocomplete="name"><p class="err" id="eName"></p></label>
+      <label>Kebutuhan Anda<textarea id="cMsg" rows="4" placeholder="Contoh: buket pink-putih untuk wisuda, 20 Desember"></textarea><p class="err" id="eMsg"></p></label>
+      <button class="btn" type="submit">Kirim lewat WhatsApp</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Telaga Teratai Florist</strong></p>
+    <p>Surakarta, Jawa Tengah · Buka setiap hari 07.00–18.00</p>
+    <p>© 2026 Telaga Teratai</p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside id="drawer" aria-label="Keranjang belanja" aria-hidden="true">
+  <header><h2>Keranjang</h2><button class="x" id="closeCart" aria-label="Tutup keranjang">×</button></header>
+  <div class="items" id="items"></div>
+  <label style="margin-top:1rem">Kartu ucapan (opsional)<textarea id="note" rows="2" placeholder="Tulis pesan untuk penerima"></textarea></label>
+  <div class="total"><span>Total</span><span id="total">Rp0</span></div>
+  <button class="btn" id="checkout" disabled>Pesan lewat WhatsApp</button>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const WA = "6281234567890"; // ganti dengan nomor WhatsApp toko
+const rp = n => "Rp" + n.toLocaleString("id-ID");
+
+/* Gambar teratai SVG: p = kelopak depan, s = kelopak belakang */
+function lotus(p, s, anim){
+  const P = (a,c,i) => `<g transform="rotate(${a} 50 78)"><path ${anim?`style="--i:${i}"`:""} fill="${c}" d="M50 78C37 58 39 32 50 12C61 32 63 58 50 78Z"/></g>`;
+  let o = '<svg viewBox="0 0 100 92" aria-hidden="true"><ellipse cx="50" cy="84" rx="46" ry="7" fill="#6fb7c9" opacity=".75"/><g class="bloom">';
+  [-68,-46,46,68].forEach((a,i)=> o += P(a,s,i));
+  [-24,0,24].forEach((a,i)=> o += P(a,p,i+4));
+  o += '<circle cx="50" cy="58" r="6" fill="#f6c744"/><circle cx="46" cy="62" r="2.4" fill="#e8a900"/><circle cx="54" cy="62" r="2.4" fill="#e8a900"/></g></svg>';
+  return o;
+}
+document.getElementById("logoIcon").innerHTML = lotus("#f2a4bf","#c94b78");
+document.getElementById("heroBloom").innerHTML = lotus("#f7b8cd","#e98aab", true);
+
+const products = [
+  {id:1,name:"Buket Teratai Pagi",cat:"Buket",price:185000,d:"Tujuh teratai merah muda dengan daun hijau muda.",p:"#f7b8cd",s:"#e98aab",bg:"#fde8ef"},
+  {id:2,name:"Teratai Putih Murni",cat:"Buket",price:150000,d:"Teratai putih bersih, cocok untuk wisuda dan syukuran.",p:"#ffffff",s:"#e3eef2",bg:"#e8f4f8"},
+  {id:3,name:"Rangkaian Kolam Biru",cat:"Rangkaian",price:240000,d:"Teratai biru dalam keranjang anyaman, dengan aksen kuning.",p:"#9fd3e8",s:"#5fa8c6",bg:"#e3f2f8"},
+  {id:4,name:"Bunga Meja Mentari",cat:"Meja",price:120000,d:"Teratai kuning dalam vas kaca bening untuk meja kerja.",p:"#fbd96a",s:"#f0b82a",bg:"#fff6d9"},
+  {id:5,name:"Hand Bouquet Senja",cat:"Buket",price:210000,d:"Perpaduan merah muda dan kuning seperti langit sore.",p:"#f9c9a7",s:"#f08fa8",bg:"#fff0e4"},
+  {id:6,name:"Vas Teratai Mini",cat:"Meja",price:95000,d:"Dua teratai putih dan satu biru dalam vas kecil.",p:"#e8f4ff",s:"#8cc9e0",bg:"#f2f9fc"}
+];
+const cats = ["Semua","Buket","Rangkaian","Meja"];
+let filter = "Semua", cart = {};
+
+const filtersEl = document.getElementById("filters"), grid = document.getElementById("grid");
+cats.forEach(c=>{
+  const b = document.createElement("button");
+  b.className="chip"; b.textContent=c; b.setAttribute("aria-pressed", c===filter);
+  b.onclick=()=>{filter=c;[...filtersEl.children].forEach(x=>x.setAttribute("aria-pressed",x.textContent===c));renderGrid();};
+  filtersEl.appendChild(b);
+});
+function renderGrid(){
+  grid.innerHTML = products.filter(p=>filter==="Semua"||p.cat===filter).map(p=>`
+    <article class="card">
+      <div class="art" style="background:${p.bg}">${lotus(p.p,p.s)}</div>
+      <div class="body"><h3>${p.name}</h3><p>${p.d}</p>
+        <div class="row"><span class="price">${rp(p.price)}</span>
+        <button class="add" data-id="${p.id}">Tambah</button></div></div>
+    </article>`).join("");
+}
+grid.addEventListener("click",e=>{
+  const b = e.target.closest(".add"); if(!b) return;
+  const id = +b.dataset.id; cart[id]=(cart[id]||0)+1; update();
+  const name = products.find(p=>p.id===id).name; toast(name+" masuk keranjang");
+  b.classList.add("done"); b.textContent="Ditambahkan"; setTimeout(()=>{b.classList.remove("done");b.textContent="Tambah";},1200);
+});
+
+/* keranjang */
+const drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
+function openCart(o){drawer.classList.toggle("on",o);scrim.classList.toggle("on",o);drawer.setAttribute("aria-hidden",!o);if(o)document.getElementById("closeCart").focus();}
+document.getElementById("openCart").onclick=()=>openCart(true);
+document.getElementById("closeCart").onclick=()=>openCart(false);
+scrim.onclick=()=>openCart(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")openCart(false)});
+function update(){
+  const ids = Object.keys(cart).filter(k=>cart[k]>0);
+  const itemsEl = document.getElementById("items");
+  let total=0, count=0;
+  itemsEl.innerHTML = ids.length ? ids.map(k=>{
+    const p = products.find(x=>x.id==k), q = cart[k]; total+=p.price*q; count+=q;
+    return `<div class="item"><strong>${p.name}</strong><span>${rp(p.price*q)}</span>
+      <div class="qty"><button data-a="-" data-id="${k}" aria-label="Kurangi">−</button><span>${q}</span><button data-a="+" data-id="${k}" aria-label="Tambah">+</button></div></div>`;
+  }).join("") : '<p class="empty">Keranjang masih kosong. Pilih bunga dari koleksi kami.</p>';
+  document.getElementById("count").textContent = count;
+  document.getElementById("total").textContent = rp(total);
+  document.getElementById("checkout").disabled = !ids.length;
+}
+document.getElementById("items").addEventListener("click",e=>{
+  const b = e.target.closest("button[data-a]"); if(!b) return;
+  cart[b.dataset.id] += b.dataset.a==="+" ? 1 : -1; update();
+});
+document.getElementById("checkout").onclick=()=>{
+  const lines = Object.keys(cart).filter(k=>cart[k]>0).map(k=>{const p=products.find(x=>x.id==k);return `- ${p.name} x${cart[k]} (${rp(p.price*cart[k])})`});
+  const total = Object.keys(cart).reduce((s,k)=>s+(cart[k]>0?products.find(x=>x.id==k).price*cart[k]:0),0);
+  const note = document.getElementById("note").value.trim();
+  const msg = `Halo Telaga Teratai, saya ingin memesan:\n${lines.join("\n")}\nTotal: ${rp(total)}${note?`\nKartu ucapan: ${note}`:""}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+};
+
+/* formulir kontak */
+document.getElementById("contactForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const n = document.getElementById("cName").value.trim(), m = document.getElementById("cMsg").value.trim();
+  document.getElementById("eName").textContent = n ? "" : "Isi nama Anda.";
+  document.getElementById("eMsg").textContent = m ? "" : "Ceritakan kebutuhan Anda.";
+  if(!n||!m) return;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Halo, saya ${n}. ${m}`)}`,"_blank","noopener");
+});
+
+/* riak air di hero */
+const hero = document.getElementById("hero");
+hero.addEventListener("pointerdown",e=>{
+  if(e.target.closest("a,button")) return;
+  const r = hero.getBoundingClientRect(), d = document.createElement("div");
+  d.className="ripple"; d.style.left=(e.clientX-r.left)+"px"; d.style.top=(e.clientY-r.top)+"px";
+  hero.appendChild(d); setTimeout(()=>d.remove(),1700);
+});
+
+function toast(t){const el=document.getElementById("toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),1800);}
+renderGrid(); update();
+</script>
+</body>
+</html>
